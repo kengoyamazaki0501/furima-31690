@@ -1,42 +1,61 @@
 # テーブル設計
 
-## users テーブル
+##  users テーブル
 
-| Column     | Type    | Options     |
-| ---------  | ------- | ----------- |
-| email      | string  | null: false |
-| password   | string  | null: false |
-| name       | string  | null: false |
-| profile    | string  | null: false |
-| occupation | string  | null: false |
-| position   | string  | null: false |
-
+| Column           | Type    | Options     |
+| ---------------- | ------- | ----------- |
+| nickname         | string  | null: false |
+| email            | string  | null: false |
+| password         | string  | null: false |
+| last_name        | string  | null: false |
+| first_name       | string  | null: false |
+| last_name_kana   | string  | null: false |
+| first_name_kana  | string  | null: false |
+| birthday         | date    | null: false |
 ### Association
 
-- has_many :prototypes 
-- has_many :comments
+- has_many :items
+- has_many :orders
 
 ##  items テーブル
 
-| Column     | Type         | Options                        |
-| ---------- | ------------ | ------------------------------ |
-| title      | string       | null: false                    |
-| catch_copy | text         | null: false                    |
-| concept    | text         |                                |
-| user       | references   | null: false, foreign_key: true |
+| Column                    | Type         | Options                        |
+| ------------------------- | ------------ | ------------------------------ |
+| product_name              | string       | null: false                    |
+| explanation               | text         | null: false                    |
+| category(active_hash)     | integer      | null: false                    |
+| condition(active_hash)    | integer      | null: false                    |
+| burden(active_hash)       | integer      | null: false                    |
+| country(active_hash)      | integer      | null: false                    |
+| delivery_days(active_hash)| integer      | null: false                    |
+| price                     | integer      | null: false                    |
+| user                      | references   | null: false, foreign_key:true  |
 ### Association
 
-- has_many :comments 
-- belongs_to :user
+-  belongs_to :user
+-  belongs_to :orders
 
-##  テーブル
+##  orders テーブル
 
 | Column      | Type       | Options                        |
 | ----------- | ---------- | ------------------------------ |
-| text        | text       | null: false,                   |
+| item        | references | null: false, foreign_key: true |
 | user        | references | null: false, foreign_key: true |
-| prototype   | references | null: false, foreign_key: true |
 ### Association
 
-- belongs_to :user
-- belongs_to :prototypes
+-  has_one :item
+-  belongs_to :address 
+
+##   addresses テーブル
+
+| Column               | Type         | Options                        |
+| -------------------- | ------------ | ------------------------------ |
+| postal_code          | string       | null: false                    |
+| country(active_hash) | integer      | null: false                    |
+| city                 | string       | null: false                    |
+| address              | string       | null: false                    |
+| building_name        | string       | null: false                    |
+| phone_number         | integer      | null: false                    |
+### Association
+
+belongs_to order
