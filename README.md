@@ -33,7 +33,7 @@
 ### Association
 
 -  belongs_to :user
--  belongs_to :orders
+-  has_one :orders
 
 ##  orders テーブル
 
@@ -43,8 +43,9 @@
 | user        | references | null: false, foreign_key: true |
 ### Association
 
--  has_one :item
--  belongs_to :address 
+-  belongs_to :item
+-  has_one :address 
+-  belongs_to :user
 
 ##   addresses テーブル
 
@@ -54,8 +55,9 @@
 | country_id   | integer      | null: false                    |
 | city         | string       | null: false                    |
 | address      | string       | null: false                    |
-| building_name| string       | null: false                    |
-| phone_number | integer      | null: false                    |
+| building_name| string       |                                |
+| phone_number | string       | null: false                    |
+| order        | reference    | null: false, foreign_key: true |
 ### Association
 
-belongs_to order
+- belongs_to order
