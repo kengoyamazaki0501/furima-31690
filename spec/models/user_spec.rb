@@ -84,6 +84,18 @@ describe User do
         expect(@user.errors.full_messages).to include("Last name kana is invalid", "First name kana is invalid")
       end
 
+      it "last_name_kanaには【カタカナ】意外登録できない" do
+        @user.last_name_kana = "たろう１"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana is invalid")
+      end
+
+      it "first_name_kanaには【カタカナ】意外登録できない" do
+        @user.first_name_kana = "たろう１"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
+      end
+
       it "生年月日が空では登録できない" do
         @user.birthday = ""
         @user.valid?
