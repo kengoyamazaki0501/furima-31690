@@ -20,7 +20,7 @@ class User < ApplicationRecord
          end
 
             validates :email,               presence: true, uniqueness: true 
-                                          #  format: {with:mail.match(/@.+/)}
+                      
             validates :password,            presence: true, confirmation: true,
                                             length: {minimum:6},
                                             format: {with:(/[a-z\d]{6,}/i)}
