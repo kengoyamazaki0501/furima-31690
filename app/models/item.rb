@@ -15,7 +15,7 @@ class Item < ApplicationRecord
     validates     :condition_id
     validates     :burden_id
     validates     :country_id
-    validates     :delivery_days_id
+    validates     :delivery_day_id
   end
 
   belongs_to_active_hash :category 

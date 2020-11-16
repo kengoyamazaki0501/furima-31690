@@ -60,7 +60,7 @@ describe Item do
       end
 
       it "発送日までの日数についての情報に誤りがあるとき" do
-        @item.delivery_days_id = 1
+        @item.delivery_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery days must be other than 1")
       end
