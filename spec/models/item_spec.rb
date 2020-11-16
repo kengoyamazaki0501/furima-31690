@@ -23,6 +23,12 @@ describe Item do
         expect(@item.errors.full_messages).to include("Product name can't be blank")
       end
 
+      it "商品の画像が空では出品できないこと" do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
+
       it "商品説明が空では出品できないこと" do
         @item.explanation = ''
         @item.valid?

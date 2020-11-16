@@ -6,7 +6,6 @@ class Item < ApplicationRecord
     validates     :explanation
     validates     :image
     validates     :price, numericality: {with:(/\A[0-9]+\z/)}
-    # validates     :price, length: { minimum: 300 },length: { maximum: 9999999 }              
   end
 
   validates_inclusion_of :price, in: 300..9999999, message:'is not range'
