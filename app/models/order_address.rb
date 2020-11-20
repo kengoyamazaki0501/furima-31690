@@ -1,8 +1,8 @@
 class OrderAddress
 
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :postal_code, :country_id, :city, :address, :building_name, :phone_number
-  
+  attr_accessor :item_id, :user_id, :postal_code, :country_id, :city, :address, :building_name, :phone_number, :token
+
   with_options presence: true do
     validates :item_id 
     validates :user_id
@@ -11,7 +11,9 @@ class OrderAddress
     validates :city
     validates :address
     validates :phone_number, numericality: {with: /\A\d{10,11}\z/}
+    validates :token
   end
+
 
   def save
      # オーダーの情報を保存し、「order」という変数に入れている
