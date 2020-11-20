@@ -133,9 +133,11 @@
           <%= image_tag item.image.variant(combine_options:{gravity: :center, resize:"200x200^", crop:"200x200+0+0"}), class: 'item-imag' %>
 
           <%# 商品が売れていればsold outを表示しましょう %>
+          <% if item.order.present? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
+          <% end %>
           <%# //商品が売れていればsold outを表示しましょう %>
 
         </div>
