@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   validates :password,            presence: true, confirmation: true,
                                   length: { minimum: 6 },
-                                  format: { with: /[a-z\d]{6,}/i }
+                                  format: { with: /\A[a-z0-9]+\z/ }
   has_many :items
   has_many :orders
 end
