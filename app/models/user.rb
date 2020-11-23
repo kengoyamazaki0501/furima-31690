@@ -7,7 +7,14 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :nickname
     validates :birthday
+    validates :password
+
   end
+
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  validates :password,            length: { minimum: 6 }
+  validates_format_of :password, with: PASSWORD_REGEX
+
 
   with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ } do
     validates :last_name
@@ -19,11 +26,8 @@ class User < ApplicationRecord
     validates :first_name_kana
   end
 
-  validates :email,               presence: true, uniqueness: true
-
-  validates :password,            presence: true, confirmation: true,
-                                  length: { minimum: 6 },
-                                  format: { with: /\A[a-z0-9]+\z/ }
+  validates :email,               presence: true, uniqueness: true                                  
+                                 
   has_many :items
   has_many :orders
 end
