@@ -16,12 +16,12 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX
 
 
-  with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ } do
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'を正しく入力してください'} do
     validates :last_name
     validates :first_name
   end
 
-  with_options presence: true, format: { with: /\A[ァ-ヶー－]+\z/ } do
+  with_options presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: 'を正しく入力してください' } do
     validates :last_name_kana
     validates :first_name_kana
   end

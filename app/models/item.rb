@@ -8,9 +8,9 @@ class Item < ApplicationRecord
     validates     :price, numericality: { with: /\A[0-9]+\z/ }
   end
 
-  validates_inclusion_of :price, in: 300..9_999_999, message: 'is not range'
+  validates_inclusion_of :price, in: 300..9_999_999, message: 'を¥300〜¥9,999,999の間で入力してください'
 
-  with_options presence: true, numericality: { other_than: 1 } do
+  with_options presence: true, numericality: { other_than: 1, message:'を選択してください' } do
     validates     :category_id
     validates     :condition_id
     validates     :burden_id
