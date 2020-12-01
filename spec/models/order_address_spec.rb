@@ -20,50 +20,50 @@ RSpec.describe OrderAddress, type: :model do
         it 'postal_codeが空の時' do
           @order_address.postal_code =  ""
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include("Postal code can't be blank")
+          expect(@order_address.errors.full_messages).to include("郵便番号を入力してください")
         end
 
         it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
           @order_address.postal_code =  '1234567'
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+          expect(@order_address.errors.full_messages).to include("郵便番号はハイフンを入れてください")
         end
 
         it 'country_idに誤りがある時' do
           @order_address.country_id =  1
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include("Country is invalid. Input half-width characters.")
+          expect(@order_address.errors.full_messages).to include("都道府県を選択してください")
         end
 
         it 'cityが空の時' do
           # binding.pry
           @order_address.city = ""
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include("City can't be blank")
+          expect(@order_address.errors.full_messages).to include("市区町村を入力してください")
         end
 
         it 'addressが空の時' do
           @order_address.address = ""
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include("Address can't be blank")
+          expect(@order_address.errors.full_messages).to include("番地を入力してください")
         end
 
         it 'phone_numberが空の時' do
           @order_address.phone_number = ""
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
+          expect(@order_address.errors.full_messages).to include("電話番号を入力してください")
         end
 
         it 'phone_numberにハイフンが入っている時' do
           @order_address.phone_number = "090-1234-5678"
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include("Phone number is not a number")
+          expect(@order_address.errors.full_messages).to include("電話番号は数値で入力してください")
         end
 
         it "tokenが空では登録できないこと" do
           @order_address.token = nil
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include("Token can't be blank")
+          expect(@order_address.errors.full_messages).to include("Tokenを入力してください")
         end
 
 

@@ -6,8 +6,8 @@ class OrderAddress
   with_options presence: true do
     validates :item_id 
     validates :user_id
-    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :country_id, numericality: { other_than: 1, message: "is invalid. Input half-width characters."}
+    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "はハイフンを入れてください"}
+    validates :country_id, numericality: { other_than: 1, message: "を選択してください"}
     validates :city
     validates :address
     validates :phone_number, numericality: {with: /\A\d{10,11}\z/}
